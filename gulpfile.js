@@ -1,0 +1,51 @@
+//https://github.com/dlmanning/gulp-sass
+var gulp = require('gulp'),
+	uglify = require('gulp-uglify'),
+	sass = require('gulp-sass'),
+	plumber = require('gulp-plumber'),
+	gulpConcat = require('gulp-concat'),
+	sourcemaps = require('gulp-sourcemaps');
+
+
+function errorLog(error){
+	console.error.bind(error);
+	this.emit('end');
+}
+
+
+/*
+* Javascript tasks
+* select all javascript files under js/app and any subdirectory
+*
+* */
+gulp.task('js', function () {
+    return gulp.src('js/app/**/*.js')
+        .pipe(gulpConcat('js/scripts.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./'))
+        //.pipe(notify({ message: 'Finished minifying JavaScript'}));
+});
+
+//SASS taks
+gulp.task('sass', function () {
+ return gulp.src('css/**/*.scss')
+  .pipe(plumber())
+     //.pipe(sourcemaps.init())
+     .pipe(sass().on('error', sass.logError))
+  .pipe(sass({outputStyle: "compressed"}))
+     //.pipe(sourcemaps.write({includeContent: false}))
+     //.pipe(sourcemaps.init({loadMaps: true}))
+  .pipe(gulpConcat('styles.css'))
+  .pipe(sass().on('error', sass.logError))
+  .pipe(sourcemaps.init())
+     //.pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest('./styles.css'));
+});
+
+//Watch for changes
+gulp.task('watch', function(){
+	//gulp.watch('**/*.js', ['scripts']);
+	//gulp.watch('styles.scss', ['sass']);
+});
+
+gulp.task('default', ['js', 'sass']);
