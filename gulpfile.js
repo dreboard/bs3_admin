@@ -30,15 +30,11 @@ gulp.task('js', function () {
 gulp.task('sass', function () {
  return gulp.src('css/**/*.scss')
   .pipe(plumber())
-     //.pipe(sourcemaps.init())
-     .pipe(sass().on('error', sass.logError))
+  .pipe(sass().on('error', sass.logError))
   .pipe(sass({outputStyle: "compressed"}))
-     //.pipe(sourcemaps.write({includeContent: false}))
-     //.pipe(sourcemaps.init({loadMaps: true}))
   .pipe(gulpConcat('styles.css'))
   .pipe(sass().on('error', sass.logError))
   .pipe(sourcemaps.init())
-     //.pipe(sourcemaps.write('.'))
   .pipe(gulp.dest('./styles.css'));
 });
 
