@@ -1,4 +1,4 @@
-# [Bootstrap 3 Basic Admin Template](https://github.com/dreboard/bs3_admin) 
+# [Bootstrap 3 Basic Admin Template](https://github.com/dreboard/bs3_admin) [![Build Status](https://travis-ci.org/dreboard/bs3_admin.svg?branch=master)](https://travis-ci.org/dreboard/bs3_admin)
 Open source, admin dashboard template for [Bootstrap](http://getbootstrap.com/) 
 
 ## Getting Started
